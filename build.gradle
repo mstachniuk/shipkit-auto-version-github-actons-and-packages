@@ -56,6 +56,10 @@ publishing {
     repositories {
         maven {
             url = "https://maven.pkg.github.com/mstachniuk"
+            credentials {
+                username = "mstachniuk"
+                password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
+            }
         }
     }
 }
