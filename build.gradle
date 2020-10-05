@@ -11,6 +11,14 @@ plugins {
     id 'java-library'
     id 'org.shipkit.shipkit-auto-version' version '0.0.47'
     id 'org.shipkit.shipkit-changelog' version '0.0.45'
+    id 'maven-publish'
+}
+
+group="com.stachniuk.savgaap"
+
+java {
+    withSourcesJar()
+    withJavadocJar()
 }
 
 repositories {
@@ -36,4 +44,18 @@ dependencies {
 test {
     // Use junit platform for unit tests
     useJUnitPlatform()
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) { //name of the publication
+            from components.java
+        }
+    }
+
+    repositories {
+        maven {
+            url = "https://maven.pkg.github.com/mstachniuk"
+        }
+    }
 }
