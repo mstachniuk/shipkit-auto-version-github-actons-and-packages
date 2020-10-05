@@ -26,8 +26,11 @@ jobs:
         run: chmod +x gradlew
       - name: Build with Gradle
         run: ./gradlew build
+      - name: Tagging
+        uses: mathieudutour/github-tag-action@v4.5
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          custom_tag: "v${./gradlew properties | grep ^version: | sed 's/^version: //'}"
       - name: Publish
         if: ${{ github.event_name != 'pull_request' && github.ref == 'refs/heads/master' }}
-        run: |
-          git tag v${./gradlew properties | grep ^version: | sed 's/^version: //'}
-          ./gradlew publish -Dtoken=${{ secrets.GITHUB_TOKEN }}
+        run: ./gradlew publish -Dtoken=${{ secrets.GITHUB_TOKEN }}
