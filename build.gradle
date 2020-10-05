@@ -55,7 +55,7 @@ publishing {
 
     repositories {
         maven {
-            url = "https://maven.pkg.github.com/mstachniuk"
+            url = "https://maven.pkg.github.com/mstachniuk/shipkit-auto-version-github-actons-and-packages"
             credentials {
                 username = "mstachniuk"
                 password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
