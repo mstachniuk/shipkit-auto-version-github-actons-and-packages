@@ -30,4 +30,5 @@ jobs:
         if: ${{ github.event_name != 'pull_request' && github.ref == 'refs/heads/master' }}
         run: |
           git tag "v$(./gradlew properties | grep ^version: | sed 's/^version: //')"
+          git push --tags
           ./gradlew -Dgithub.token=${{ secrets.GITHUB_TOKEN }} publish -s
