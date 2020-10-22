@@ -34,10 +34,8 @@ jobs:
           last_commit_log=$(git log -1 --pretty=format:"%s %b")
 
           readonly local is_merge_commit=$(echo "$last_commit_log" | egrep -c "Merge [a-zA-Z0-9]* into [a-zA-Z0-9]*")
-          echo "is_merge_commit $is_merge_commit"
           if [[ "$is_merge_commit" -eq 1 ]]; then
             readonly local commit_id=$(echo "$last_commit_log" | sed 's/Merge //' | sed 's/ into [a-zA-Z0-9]*//')
-            echo "commit_id $commit_id"
             last_commit_log=$(git log -1 --pretty="%s %b" $commit_id)
           fi
           echo "last commit log: $last_commit_log"
@@ -49,6 +47,7 @@ jobs:
             echo "all good, continue"
           else
             echo "the last commit log \"$last_commit_log\" contains \"$COMMIT_FILTER\", stopping"
+            # TODO: How to finish workflow with success?
             exit 78
           fi
       - name: Set up JDK 1.8
