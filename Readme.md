@@ -1,1 +1,3 @@
 # Example project for Shipkit-auto-version + GitHub Actions + Github Packages 
+
+This project shows how to use [Shipkit-auto-version](https://github.com/shipkit/shipkit-auto-version) ...
