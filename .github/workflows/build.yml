@@ -6,6 +6,10 @@ name: Java CI with Gradle
 on:
   push:
     branches: [ master ]
+    paths-ignore:
+    - 'docs/**'
+    - '*.md'
+    - '*.adoc'
   pull_request:
     branches: [ master ]
 
