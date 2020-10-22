@@ -31,11 +31,11 @@ jobs:
         run: |
           # The build should be skipped when commit contains value defined in COMMIT_FILTER
           # Based on: https://github.com/marketplace/actions/skip-based-on-commit-message
-          local last_commit_log=$(git log -1 --pretty=format:"%s %b")
+          last_commit_log=$(git log -1 --pretty=format:"%s %b")
 
           readonly local is_merge_commit=$(echo "$last_commit_log" | egrep -c "Merge [a-zA-Z0-9]* into [a-zA-Z0-9]*")
           if "$is_merge_commit" ; then
-            local commit_id=$(echo "$last_commit_log" | sed 's/Merge //' | sed 's/ into [a-zA-Z0-9]*//')
+            readonly local commit_id=$(echo "$last_commit_log" | sed 's/Merge //' | sed 's/ into [a-zA-Z0-9]*//')
             last_commit_log=$(git log -1 --pretty="%s %b" "$commit_id")
           fi
           echo "last commit log: $last_commit_log"
