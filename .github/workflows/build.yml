@@ -35,7 +35,7 @@ jobs:
 
           readonly local is_merge_commit=$(echo "$last_commit_log" | egrep -c "Merge [a-zA-Z0-9]* into [a-zA-Z0-9]*")
           echo "is_merge_commit $is_merge_commit"
-          if $is_merge_commit ; then
+          if [[ "$is_merge_commit" -eq 1 ]]; then
             readonly local commit_id=$(echo "$last_commit_log" | sed 's/Merge //' | sed 's/ into [a-zA-Z0-9]*//')
             echo "commit_id $commit_id"
             last_commit_log=$(git log -1 --pretty="%s %b" "$commit_id")
