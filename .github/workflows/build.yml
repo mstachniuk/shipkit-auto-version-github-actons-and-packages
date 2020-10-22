@@ -8,14 +8,14 @@ on:
     branches: [ master ]
     paths-ignore:
     - 'docs/**'
-    - '*.md'
-    - '*.adoc'
+    - '**/*.md'
+    - '**/*.adoc'
   pull_request:
     branches: [ master ]
     paths-ignore:
     - 'docs/**'
-    - '*.md'
-    - '*.adoc'
+    - '**/*.md'
+    - '**/*.adoc'
 
 jobs:
   build:
