@@ -1,0 +1,1 @@
+# Example project for Shipkit-auto-version + GitHub Actions + Github Packages 
